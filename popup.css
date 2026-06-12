@@ -1,0 +1,197 @@
+:root {
+  --bg: #14161c;
+  --panel: #1d2027;
+  --hover: #262a33;
+  --border: #323845;
+  --text: #e8eaf0;
+  --dim: #8e95a5;
+  --accent: #6c8cff;
+  --danger: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  max-height: 560px;
+  margin: 0;
+  padding: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar h1 {
+  font-size: 15px;
+  margin: 0;
+}
+
+button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+button:hover {
+  background: var(--hover);
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+button.primary:hover {
+  filter: brightness(1.1);
+}
+
+#search,
+.editor input,
+.editor textarea {
+  width: 100%;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 9px;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+#search:focus,
+.editor input:focus,
+.editor textarea:focus {
+  outline: 1px solid var(--accent);
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.editor textarea {
+  resize: vertical;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.prompt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prompt-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.prompt-item:hover {
+  background: var(--hover);
+}
+
+.prompt-main {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prompt-title {
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prompt-preview {
+  color: var(--dim);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icon-btn {
+  border: none;
+  background: none;
+  color: var(--dim);
+  font-size: 13px;
+  padding: 3px 5px;
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  background: none;
+}
+
+.icon-btn.delete:hover {
+  color: var(--danger);
+}
+
+.empty-note {
+  color: var(--dim);
+  text-align: center;
+  margin: 18px 0;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+
+.status {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 12px;
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Vault — live demo</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #0d0f14;
+        color: #e8eaf0;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 32px 16px;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-size: 1.4rem;
+        margin: 0;
+      }
+      p {
+        color: #8e95a5;
+        max-width: 560px;
+        text-align: center;
+        margin: 0;
+        line-height: 1.5;
+      }
+      a {
+        color: #6c8cff;
+      }
+      .stage {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      iframe {
+        width: 384px;
+        height: 540px;
+        border: 1px solid #323845;
+        border-radius: 12px;
+        background: #14161c;
+      }
+      .target {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      textarea {
+        width: 340px;
+        height: 200px;
+        background: #14161c;
+        color: #e8eaf0;
+        border: 1px solid #323845;
+        border-radius: 12px;
+        padding: 14px;
+        font-family: inherit;
+        font-size: 14px;
+        resize: vertical;
+      }
+      label {
+        font-size: 0.85rem;
+        color: #8e95a5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Prompt Vault — live demo</h1>
+    <p>
+      This is the extension popup running as a plain web page (prompts are kept in
+      localStorage here). In the real extension, clicking a prompt inserts it straight
+      into the text box you were typing in — on this demo page it copies it, so pick a
+      prompt and paste it into the textarea.
+      <a href="https://github.com/jaypalchauhan/prompt-vault">Install instructions →</a>
+    </p>
+    <div class="stage">
+      <iframe src="popup.html" title="Prompt Vault popup"></iframe>
+      <div class="target">
+        <label for="playground">Any website's text box</label>
+        <textarea id="playground" placeholder="Paste your prompt here (Ctrl+V)…"></textarea>
+      </div>
+    </div>
+  </body>
+</html>

@@ -75,11 +75,12 @@
       This is the extension popup running as a plain web page (prompts are kept in
       localStorage here). In the real extension, clicking a prompt inserts it straight
       into the text box you were typing in — on this demo page it copies it, so pick a
-      prompt and paste it into the textarea.
+      prompt and paste it into the textarea. Try <em>Explain like I am five</em> to see
+      {{variable}} placeholders in action.
       <a href="https://github.com/jaypalchauhan/prompt-vault">Install instructions →</a>
     </p>
     <div class="stage">
-      <iframe src="popup.html" title="Prompt Vault popup"></iframe>
+      <iframe src="popup.html" title="Prompt Vault popup" allow="clipboard-write"></iframe>
       <div class="target">
         <label for="playground">Any website's text box</label>
         <textarea id="playground" placeholder="Paste your prompt here (Ctrl+V)…"></textarea>

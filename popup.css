@@ -1,12 +1,27 @@
 :root {
-  --bg: #14161c;
-  --panel: #1d2027;
-  --hover: #262a33;
-  --border: #323845;
-  --text: #e8eaf0;
-  --dim: #8e95a5;
-  --accent: #6c8cff;
+  --bg: #101218;
+  --panel: #181b23;
+  --panel-2: #1f2330;
+  --hover: #242938;
+  --border: #2c3242;
+  --text: #eceef4;
+  --dim: #8e95a8;
+  --accent: #6366f1;
+  --accent-2: #a855f7;
+  --gradient: linear-gradient(135deg, #6366f1, #a855f7);
   --danger: #ff6b6b;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme='light'] {
+  --bg: #f4f5fa;
+  --panel: #ffffff;
+  --panel-2: #f0f1f7;
+  --hover: #e9ebf5;
+  --border: #d9dcea;
+  --text: #1c2030;
+  --dim: #69708a;
+  --shadow: 0 4px 14px rgba(60, 70, 120, 0.12);
 }
 
 * {
@@ -14,10 +29,10 @@
 }
 
 body {
-  width: 360px;
-  max-height: 560px;
+  width: 380px;
+  max-height: 580px;
   margin: 0;
-  padding: 12px;
+  padding: 14px;
   background: var(--bg);
   color: var(--text);
   font-family: 'Segoe UI', system-ui, sans-serif;
@@ -25,11 +40,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  transition: background 0.25s, color 0.25s;
 }
 
 .hidden {
   display: none !important;
 }
+
+/* ---------- header ---------- */
 
 .topbar {
   display: flex;
@@ -37,96 +55,272 @@ body {
   justify-content: space-between;
 }
 
-.topbar h1 {
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 22px;
+  height: 22px;
+  fill: url(#logo-gradient) var(--accent);
+  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.55));
+}
+
+.logo path {
+  fill: var(--accent);
+}
+
+.brand h1 {
   font-size: 15px;
   margin: 0;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.2px;
 }
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- buttons ---------- */
 
 button {
   background: var(--panel);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 5px 10px;
+  border-radius: 8px;
+  padding: 6px 12px;
   cursor: pointer;
   font-size: 13px;
+  font-family: inherit;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
 }
 
 button:hover {
   background: var(--hover);
 }
 
+button:active {
+  transform: scale(0.97);
+}
+
 button.primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--gradient);
+  border: none;
   color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
 }
 
 button.primary:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.12);
 }
 
+.icon-btn {
+  border: none;
+  background: none;
+  color: var(--dim);
+  font-size: 14px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  background: var(--hover);
+}
+
+.icon-btn.delete:hover {
+  color: var(--danger);
+}
+
+/* ---------- inputs ---------- */
+
 #search,
-.editor input,
-.editor textarea {
+.panel input,
+.panel textarea {
   width: 100%;
   background: var(--panel);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 7px 9px;
+  border-radius: 8px;
+  padding: 8px 10px;
   font-family: inherit;
   font-size: 13px;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 #search:focus,
-.editor input:focus,
-.editor textarea:focus {
-  outline: 1px solid var(--accent);
+.panel input:focus,
+.panel textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
 }
 
-.editor {
+/* ---------- tag bar ---------- */
+
+.tag-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-bar:empty {
+  display: none;
+}
+
+.chip {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--dim);
+  border-radius: 999px;
+  padding: 3px 11px;
+  font-size: 12px;
+}
+
+.chip:hover {
+  color: var(--text);
+}
+
+.chip.active {
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---------- panels (editor / variable form) ---------- */
+
+.panel {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 10px;
-  background: var(--panel);
+  padding: 12px;
+  background: var(--panel-2);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  animation: slide-in 0.18s ease-out;
 }
 
-.editor textarea {
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel h2 {
+  font-size: 13px;
+  margin: 0;
+}
+
+.panel textarea {
   resize: vertical;
 }
 
-.editor-actions {
+.panel-actions {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
 }
 
+.hint {
+  color: var(--dim);
+  font-size: 12px;
+  margin: 0;
+}
+
+.hint code {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+#var-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.var-field label {
+  display: block;
+  font-size: 12px;
+  color: var(--dim);
+  margin-bottom: 3px;
+  text-transform: capitalize;
+}
+
+#var-preview {
+  background: var(--panel);
+  color: var(--dim);
+  font-size: 12px;
+}
+
+/* ---------- prompt list ---------- */
+
 .prompt-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 2px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.prompt-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.prompt-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
 }
 
 .prompt-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 10px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  animation: fade-in 0.2s ease-out;
+  transition: transform 0.12s, box-shadow 0.15s, border-color 0.15s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .prompt-item:hover {
-  background: var(--hover);
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .prompt-main {
@@ -140,7 +334,7 @@ button.primary:hover {
   color: inherit;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .prompt-title {
@@ -159,28 +353,74 @@ button.primary:hover {
   text-overflow: ellipsis;
 }
 
-.icon-btn {
-  border: none;
-  background: none;
+.prompt-actions {
+  display: flex;
+  gap: 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.prompt-item:hover .prompt-actions,
+.prompt-item:focus-within .prompt-actions {
+  opacity: 1;
+}
+
+.prompt-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.prompt-meta:empty {
+  display: none;
+}
+
+.mini-chip {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
   color: var(--dim);
-  font-size: 13px;
-  padding: 3px 5px;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 11px;
 }
 
-.icon-btn:hover {
-  color: var(--text);
-  background: none;
+.uses-badge {
+  margin-left: auto;
+  color: var(--dim);
+  font-size: 11px;
 }
 
-.icon-btn.delete:hover {
-  color: var(--danger);
+.var-badge {
+  color: var(--accent-2);
+  font-size: 11px;
+  font-weight: 600;
 }
+
+/* ---------- empty state ---------- */
 
 .empty-note {
   color: var(--dim);
   text-align: center;
-  margin: 18px 0;
+  margin: 22px 0;
 }
+
+.empty-note svg {
+  width: 36px;
+  height: 36px;
+  opacity: 0.4;
+}
+
+.empty-note svg path {
+  fill: var(--dim);
+}
+
+.empty-note p {
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+/* ---------- footer ---------- */
 
 .footer {
   display: flex;

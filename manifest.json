@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Prompt Vault",
-  "version": "1.0.0",
-  "description": "Save your favourite AI prompts and insert them into any text box on any site with one click.",
+  "version": "2.0.0",
+  "description": "Save AI prompts with {{variables}}, tags and search - insert them into any text box on any site with one click.",
   "permissions": ["storage", "activeTab", "scripting", "contextMenus"],
   "action": {
     "default_popup": "popup.html",
@@ -14,6 +14,14 @@
   "background": {
     "service_worker": "background.js",
     "type": "module"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+P"
+      },
+      "description": "Open Prompt Vault"
+    }
   },
   "icons": {
     "16": "icons/icon16.png",

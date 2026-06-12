@@ -8,16 +8,23 @@ Claude, Gemini, GitHub, Gmail — with one click or a right-click.
 
 ## Features
 
-- **One-click insert** — open the popup, click a prompt, it replaces the text
-  in the box you were typing in
+- **One-click insert** — open the popup (or press `Alt+P`), click a prompt, it
+  replaces the text in the box you were typing in
+- **`{{variable}}` placeholders** — write prompts like
+  `Explain {{topic}} in {{count}} bullet points`; on insert, a small form pops
+  up to fill in each blank, with a live preview of the final text
+- **Tags & filter chips** — organise prompts by tag and filter with one click
+- **Most-used first** — every insert is counted, so your go-to prompts float
+  to the top
 - **Right-click dropdown** — right-click any text field → *Insert prompt* →
   pick from your saved prompts, without opening the popup
+- **Light & dark themes** with a one-click toggle
 - Works with plain inputs, textareas **and** rich editors (ChatGPT, Claude and
   Gemini use contenteditable editors — handled via real edit commands so the
   site reacts as if you typed)
 - React-safe insertion: goes through the native value setter and fires
   `input`/`change` events, so frameworks pick up the new text
-- Search, edit, delete, and **import/export** prompts as JSON
+- Search, edit, delete, copy, and **import/export** prompts as JSON
 - Prompts sync across your Chrome profile via `chrome.storage.sync`
 - Privacy-friendly: no servers, no tracking, no broad host permissions —
   uses `activeTab`, so it only touches a page when **you** invoke it
@@ -53,9 +60,10 @@ is no persistent content script running on every site.
 
 ```
 manifest.json    # Manifest V3
-popup.html/css/js# popup UI: list, search, editor, import/export
+popup.html/css/js# popup UI: list, search, tags, variables form, editor
 background.js    # right-click menu, kept in sync with storage
 insert.js        # the injection function shared by both
+samples.js       # starter prompts seeded on first run
 demo.html        # standalone demo (localStorage instead of chrome.storage)
 ```
 

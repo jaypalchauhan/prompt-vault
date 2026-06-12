@@ -7,23 +7,49 @@
   </head>
   <body>
     <header class="topbar">
-      <h1>Prompt Vault</h1>
-      <button id="add-btn" class="primary" title="Add a new prompt">+ Add</button>
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M13 2 5 13h5l-2 9 9-12h-5l1-8z" />
+        </svg>
+        <h1>Prompt Vault</h1>
+      </div>
+      <div class="topbar-actions">
+        <button id="theme-btn" class="icon-btn" title="Toggle light/dark theme">◐</button>
+        <button id="add-btn" class="primary">+ New</button>
+      </div>
     </header>
 
     <input id="search" type="search" placeholder="Search prompts…" autocomplete="off" />
 
-    <form id="editor" class="editor hidden">
+    <nav id="tag-bar" class="tag-bar" aria-label="Filter by tag"></nav>
+
+    <form id="editor" class="panel hidden">
       <input id="editor-title" type="text" placeholder="Title (shown in the dropdown)" maxlength="60" required />
-      <textarea id="editor-body" placeholder="Prompt text…" rows="6" required></textarea>
-      <div class="editor-actions">
-        <button type="submit" class="primary">Save</button>
+      <input id="editor-tags" type="text" placeholder="Tags, comma separated (optional)" maxlength="80" />
+      <textarea id="editor-body" placeholder="Prompt text… use {{name}} for fill-in-the-blank variables" rows="6" required></textarea>
+      <p class="hint">Tip: <code>{{topic}}</code> placeholders become a small form when you insert the prompt.</p>
+      <div class="panel-actions">
         <button type="button" id="editor-cancel">Cancel</button>
+        <button type="submit" class="primary">Save</button>
       </div>
     </form>
 
+    <section id="var-panel" class="panel hidden" aria-label="Fill in variables">
+      <h2 id="var-title"></h2>
+      <div id="var-fields"></div>
+      <label class="hint" for="var-preview">Preview</label>
+      <textarea id="var-preview" rows="4" readonly></textarea>
+      <div class="panel-actions">
+        <button type="button" id="var-cancel">Cancel</button>
+        <button type="button" id="var-insert" class="primary">Insert</button>
+      </div>
+    </section>
+
     <ul id="prompt-list" class="prompt-list"></ul>
-    <p id="empty-note" class="empty-note hidden">No prompts yet — click <strong>+ Add</strong> to save your first one.</p>
+    <div id="empty-note" class="empty-note hidden">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h5l-2 9 9-12h-5l1-8z" /></svg>
+      <p>No prompts here yet.<br />Click <strong>+ New</strong> to save your first one.</p>
+    </div>
 
     <footer class="footer">
       <button id="export-btn" title="Download all prompts as JSON">Export</button>
